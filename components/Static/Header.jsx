@@ -120,7 +120,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="mailto:name@email.com">
+                            <Link href="mailto:ilovefourleafclover@icloud.com">
                                 <a className={`flex items-center ${router.route == '/contact' ? 'text-gray-100 font-semibold' : 'hover:text-white transition-all'}`}>
                                     <UilEnvelope /> <h6 className="ml-1">Contact</h6>
                                 </a>
