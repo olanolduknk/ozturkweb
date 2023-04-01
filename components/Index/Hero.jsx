@@ -59,7 +59,7 @@ export default function Hero() {
                         <h1 className="leading-none text-white font-bold text-4xl">there,</h1>
                     </div>
                     <h1 className="leading-none text-white font-bold text-4xl">I'm Öztürk.</h1>
-                    <p className="pt-3 w-4/5 lg:w-8/12 mx-auto sm:mr-0 sm:ml-auto text-gray-400">My name is Öztürk. I live in Turkey. I'm 21 years old and I'm a Full Stack developer. Building websites, bots, npm packages and more. ^^</p>
+                    <p className="pt-3 w-4/5 lg:w-8/12 mx-auto sm:mr-0 sm:ml-auto text-gray-400">Building websites, bots, npm packages and more. ^^</p>
                 </div>
             </div>
             <div className="waving relative min-h-[230px] mt-10 md:mt-0">
