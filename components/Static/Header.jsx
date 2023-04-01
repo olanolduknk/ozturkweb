@@ -148,7 +148,7 @@ export default function Header() {
                         setIsClicked(true);
                         setTimeout(() => setIsClicked(false), 1000);
                     }} className="focus:outline-none cursor-pointer hidden lg:block version text-sm py-1.5 px-3 rounded-md">
-                        v<span className="font-bold">fistik hanim#4444 aşığım</span>
+                        <span className="font-bold">fistik hanim#4444 aşığım</span>
                     </button>
                 </Tippy>
             </div>
