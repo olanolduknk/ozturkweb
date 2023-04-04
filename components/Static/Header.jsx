@@ -148,8 +148,9 @@ export default function Header() {
                         setIsClicked(true);
                         setTimeout(() => setIsClicked(false), 1000);
                     }} className="focus:outline-none cursor-pointer hidden lg:block version text-sm py-1.5 px-3 rounded-md">
-                        <span className="font-bold">DEVÏN#6515</span>
-                        <span className="font-bold">acar#0001</span>
+                        <span className="font-bold">DEVÏN#6515</span><br></br>
+                        <span className="font-bold">acar#0001</span><br></br>
+                        <span className="font-bold">✦ Jettcim#0001</span>
                     </button>
                 </Tippy>
             </div>
