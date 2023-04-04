@@ -50,6 +50,8 @@ export default function Activities() {
                 </div>}
             </div>
 
+
+
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
                 <div className="relative flex items-center w-[100px] h-[100px]">
                     {!profile ? (
@@ -85,6 +87,8 @@ export default function Activities() {
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
             </div>
+
+
 
         </div>
     );
