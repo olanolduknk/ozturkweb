@@ -49,18 +49,13 @@ export default function Activities() {
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
             </div>
+        
+
+
+
 
 
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
-                <div className="relative flex items-center w-[100px] h-[100px]">
-                    {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
-                        <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
-                            <div className="w-full h-full relative flex items-center justify-center">
-                            <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
-                            </div>
-                        </div>
-                    </Tippy>}
-                </div>
                 {!profile ? <div className="flex-1">
                     <div className="animate-pulse bg-white/10 w-16 h-6 rounded-lg" />
                     <div className="animate-pulse mt-2 bg-white/10 w-12 h-4 rounded-md" />
@@ -80,6 +75,9 @@ export default function Activities() {
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=vsc&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
             </div>
+
+
+
 
 
         </div>
