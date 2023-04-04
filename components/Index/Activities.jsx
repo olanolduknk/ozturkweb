@@ -52,7 +52,7 @@ export default function Activities() {
 
 
 
-            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
+            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-[%100] h-[140px] sm:gap-x-6 py-5 relative">
                 <div className="space-x-3 absolute inset-0 bg-[#080808] rounded-lg flex items-center justify-center">
                     <div className="animate-pulse h-6 w-6 rounded-lg bg-white/10" />
                     <div className="animate-pulse h-5 w-40 md:w-80 rounded-lg bg-white/10" />
@@ -64,7 +64,7 @@ export default function Activities() {
                 </div>}
             </div>
 
-            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
+            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-[%100] h-[140px] sm:gap-x-6 py-5 relative">
                 <div className="space-x-3 absolute inset-0 bg-[#080808] rounded-lg flex items-center justify-center">
                     <div className="animate-pulse h-6 w-6 rounded-lg bg-white/10" />
                     <div className="animate-pulse h-5 w-40 md:w-80 rounded-lg bg-white/10" />
