@@ -60,10 +60,10 @@ export default function Activities() {
                     <div className="animate-pulse bg-white/10 w-16 h-6 rounded-lg" />
                     <div className="animate-pulse mt-2 bg-white/10 w-12 h-4 rounded-md" />
                 </div> : <div className="flex-1">
-                <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} widht="312" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
+                <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
             </div>
-            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-[312px] h-[140px] sm:gap-x-6 py-5 relative">
+            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
                 <div className="space-x-3 absolute inset-0 bg-[#080808] rounded-lg flex items-center justify-center">
                     <div className="animate-pulse h-6 w-6 rounded-lg bg-white/10" />
                     <div className="animate-pulse h-5 w-40 md:w-80 rounded-lg bg-white/10" />
