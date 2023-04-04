@@ -151,22 +151,13 @@ export default function Header() {
                         <span className="font-bold">DEVÏN#6515</span>
                     </button>
                 </Tippy>
-                <Tippy interactive={true} content="discord.gg/rentia">
+                <Tippy interactive={true} content="Piyano">
                     <button onClick={() => {
                         if (isClicked) return;
                         setIsClicked(true);
                         setTimeout(() => setIsClicked(false), 1000);
                     }} className="focus:outline-none cursor-pointer hidden lg:block version text-sm py-1.5 px-3 rounded-md">
-                        <span className="font-bold">acar#0001</span>
-                    </button>
-                </Tippy>
-                <Tippy interactive={true} content="/rentia">
-                    <button onClick={() => {
-                        if (isClicked) return;
-                        setIsClicked(true);
-                        setTimeout(() => setIsClicked(false), 1000);
-                    }} className="focus:outline-none cursor-pointer hidden lg:block version text-sm py-1.5 px-3 rounded-md">
-                        <span className="font-bold">✦ Jettcim#0001</span>
+                        <span className="font-bold">jack.#9000</span>
                     </button>
                 </Tippy>
             </div>
