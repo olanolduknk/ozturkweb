@@ -52,8 +52,8 @@ export default function Activities() {
 
 
 
-
-            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-[300px] h-[140px] sm:gap-x-6 py-5 relative">
+            <div className="pt-5 pb-10 md:grid grid-cols-3 gap-x-6">
+            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
                 {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
@@ -66,6 +66,7 @@ export default function Activities() {
 
 
 
+        </div>
         </div>
     );
 };
