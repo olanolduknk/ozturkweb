@@ -83,7 +83,7 @@ export default function Activities() {
                 {profile && <a onClick={toggle} className="cursor-pointer absolute top-2 left-2 z-[2] uppercase text-xs text-zinc-700">
                 </a>}
                 {profile && <div className="z-1 absolute inset-0">
-                    <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=vsc"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
+                    <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=vsc&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
             </div>
 
