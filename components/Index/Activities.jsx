@@ -48,19 +48,10 @@ export default function Activities() {
                 {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
-                
-
-
-
-
-
-
-                
+                <br></br>
                 {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
-                </div>}
-
-                
+                </div>}<br></br>
                 {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=vsc&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
