@@ -60,7 +60,7 @@ export default function Hero() {
                     </div>
                     <h1 className="leading-none text-white font-bold text-4xl">I'm Öztürk.</h1>
                     <p className="pt-3 w-4/5 lg:w-8/12 mx-auto sm:mr-0 sm:ml-auto text-gray-400">Building websites, bots, npm packages and more. ^^</p>
-                    <p className="pt-3 w-4/5 lg:w-8/12 mx-auto sm:mr-0 sm:ml-auto text-gray-400"><iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" /></p>
+                    <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>
             </div>
             <div className="waving relative min-h-[230px] mt-10 md:mt-0">
