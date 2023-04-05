@@ -64,8 +64,6 @@ export default function Activities() {
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
                         <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
                             <div className="w-full h-full relative flex items-center justify-center">
-                                <div className={"animate-ping w-3 h-3 rounded-full " + `discord-${profile.status}`} />
-                                <div className={"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full " + `discord-${profile.status}`} />
                             </div>
                         </div>
                     </Tippy>}
