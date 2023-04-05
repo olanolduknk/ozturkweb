@@ -54,13 +54,13 @@ export default function Activities() {
 
 
 
+
+
+
+
+
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
             <div className="relative flex items-center w-[100px] h-[100px]">
-                    {!profile ? (
-                        <img className="animate-pulse rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" />
-                    ) : (
-                        <img className="rounded-full w-auto" src={`https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}?size=4096`} />
-                    )}
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
                     <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" />
                     </Tippy>}
