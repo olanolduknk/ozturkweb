@@ -57,7 +57,7 @@ export default function Activities() {
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
             <div className="relative flex items-center w-[100px] h-[100px]">
                     {!profile ? (
-                        <img className="animate-pulse rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" />
+                        <img className="animate-pulse rounded-full w-auto" src="" />
                     ) : (
                         <img className="rounded-full w-auto" src={``} />
                     )}
