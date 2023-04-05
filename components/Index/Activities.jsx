@@ -55,16 +55,18 @@ export default function Activities() {
 
 
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
-                <div className="relative flex items-center w-full h-[140px]">
-                <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&theme=dark&background=080808" className="w-full" height="140" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
+                <div className="relative flex items-center w-[100px] h-[100px]">
+                <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&theme=dark&background=080808" width="300" height="100" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"/>
                 </div>
             </div>
 
 
             <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
-                <div className="z-1 absolute inset-0">
+                {profile && <a onClick={toggle} className="cursor-pointer absolute top-2 left-2 z-[2] uppercase text-xs text-zinc-700">
+                </a>}
+                {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=vsc&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
-                </div>
+                </div>}
 
 
             </div>
