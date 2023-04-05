@@ -62,11 +62,7 @@ export default function Activities() {
                         <img className="rounded-full w-auto" src={``} />
                     )}
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
-                        <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
-                        <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" />
-                            <div className="w-full h-full relative flex items-center justify-center">
-                            </div>
-                        </div>
+                    <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" />
                     </Tippy>}
                 </div>
                 {!profile ? <div className="flex-1">
