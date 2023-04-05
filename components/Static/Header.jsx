@@ -29,7 +29,7 @@ export default function Header() {
                     <Link href="/">
                         <a className="pr-1 text-white font-bold text-4xl">Öztürk</a>
                     </Link>
-                    <a target="_blank" href="https://discord.gg/WDEBNRSxRB" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
+                    <a target="_blank" href="https://discord.com/users/245511350724329473" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
                         <i className="fab fa-discord" />
                     </a>
                     <a target="_blank" href="https://github.com/ozturkbey" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
