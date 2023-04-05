@@ -72,7 +72,7 @@ export default function Activities() {
                     <h1 className="text-center leading-none font-light text-3xl md:text-xl lg:text-3xl text-white"></h1>
                     <h1 className="text-center leading-none font-semibold text-xl md:text-lg lg:text-xl text-zinc-300"></h1>
                 </div>}
-            </div>
+            </div><br></br>
 
 
 
