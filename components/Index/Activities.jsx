@@ -48,7 +48,7 @@ export default function Activities() {
                 {profile && <div className="z-1 absolute inset-0">
                     <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>}
-            </div>
+            </div><br></br>
 
 
 
@@ -72,7 +72,7 @@ export default function Activities() {
                     <h1 className="text-center leading-none font-light text-3xl md:text-xl lg:text-3xl text-white"></h1>
                     <h1 className="text-center leading-none font-semibold text-xl md:text-lg lg:text-xl text-zinc-300"></h1>
                 </div>}
-            </div><br></br>
+            </div>
 
 
 
