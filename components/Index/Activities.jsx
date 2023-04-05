@@ -59,7 +59,7 @@ export default function Activities() {
                     {!profile ? (
                         <img className="animate-pulse rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" />
                     ) : (
-                        <img className="rounded-full w-auto" src={`https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}?size=4096`} />
+                        <img className="rounded-full w-auto" src={``} />
                     )}
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
                         <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
