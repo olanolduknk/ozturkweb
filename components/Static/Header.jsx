@@ -142,13 +142,13 @@ export default function Header() {
                 >
                     <img className="w-6 h-6 translate-y-3 -translate-x-2 -rotate-12" src={baseURL + emojis[Object.keys(emojis)[Math.floor(Math.random() * Object.keys(emojis).length)]]} />
                 </Transition>
-                <Tippy interactive={true} content="agzim komik">
+                <Tippy interactive={true} content="ozcan">
                     <button onClick={() => {
                         if (isClicked) return;
                         setIsClicked(true);
                         setTimeout(() => setIsClicked(false), 1000);
                     }} className="focus:outline-none cursor-pointer hidden lg:block version text-sm py-1.5 px-3 rounded-md">
-                        <span className="font-bold">DEVÏN#6515</span>
+                        <span className="font-bold">wia$ezilla ✦#8000</span>
                     </button>
                 </Tippy>
             </div>
