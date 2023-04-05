@@ -53,9 +53,9 @@ export default function Activities() {
 
 
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
-                <div className="relative flex items-center w-full h-[140px]">
-                    <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-full h-[140px] flex items-center justify-center">
-                            <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&background=080808"} />
+                <div className="relative flex items-center w-full h-[100px]">
+                    <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
+                            <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                             </div>
                 </div>
             </div>
