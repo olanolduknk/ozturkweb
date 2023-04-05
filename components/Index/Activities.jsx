@@ -61,6 +61,11 @@ export default function Activities() {
 
             <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
             <div className="relative flex items-center w-[100px] h-[100px]">
+                    {!profile ? (
+                        <img className="animate-pulse rounded-full w-auto" src="" />
+                    ) : (
+                        <img className="rounded-full w-auto" src={``} />
+                    )}
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
                     <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" />
                     </Tippy>}
@@ -69,6 +74,8 @@ export default function Activities() {
                     <div className="animate-pulse bg-white/10 w-16 h-6 rounded-lg" />
                     <div className="animate-pulse mt-2 bg-white/10 w-12 h-4 rounded-md" />
                 </div> : <div className="flex-1">
+                    <h1 className="text-center leading-none font-light text-3xl md:text-xl lg:text-3xl text-white">{profile.username}</h1>
+                    <h1 className="text-center leading-none font-semibold text-xl md:text-lg lg:text-xl text-zinc-300">#{profile.discriminator}</h1>
                 </div>}
             </div>
 
