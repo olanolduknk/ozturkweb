@@ -56,7 +56,7 @@ export default function Activities() {
 
             <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
                 <div className="z-1 absolute inset-0">
-                <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&theme=dark&background=080808" className="w-full" height="140" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
+                <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status&theme=dark&background=080808" className="w-312" height="140" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>
             </div>
 
