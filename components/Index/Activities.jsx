@@ -67,7 +67,7 @@ export default function Activities() {
                         <img className="rounded-full w-auto" src={``} />
                     )}
                     {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
-                    <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="300" height="100" allowtransparency="true" frameborder="0" />
+                    <iframe src="https://linkcord.js.org/api/v3/widget/245511350724329473?type=status" width="312" height="140" allowtransparency="true" frameborder="0" />
                     </Tippy>}
                 </div>
                 {!profile ? <div className="flex-1">
