@@ -95,21 +95,19 @@ export default function Hero() {
                     </>}
                 </div>
                 <div className={(!projects || !randomThree ? "animate-pulse" : "") + " w-32 h-16 absolute top-[35%] left-[50%] sm:left-[40%] project-box tone-3 p-3 rounded-lg perspective-middle flex items-center space-x-2"}>
-                <div className="relative flex items-center w-[100px] h-[100px]">
-                    {!profile ? (
-                        <img className="animate-pulse rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" />
-                    ) : (
-                        <img className="rounded-full w-auto" src={`https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}?size=4096`} />
-                    )}
-                    {profile && <Tippy interactive={true} content={profile.status.toUpperCase()}>
-                        <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
-                            <div className="w-full h-full relative flex items-center justify-center">
-                                <div className={"animate-ping w-3 h-3 rounded-full " + `discord-${profile.status}`} />
-                                <div className={"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full " + `discord-${profile.status}`} />
-                            </div>
+                    {randomThree ? <>
+                        <img className="w-8 h-8 rounded-xl" src={randomThree.logo} />
+                        <div className="space-y-1">
+                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomThree.title}</h1>
+                            <a href={randomThree.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
                         </div>
-                    </Tippy>}
-                </div>
+                    </> : <>
+                        <div className="w-8 h-8 rounded-lg bg-white/10" />
+                        <div className="space-y-1">
+                            <div className="w-16 h-3 rounded-lg bg-white/10" />
+                            <div className="w-12 h-2 rounded-lg bg-white/10" />
+                        </div>
+                    </>}
                 </div>
             </div>
         </div>
