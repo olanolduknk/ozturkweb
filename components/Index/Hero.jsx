@@ -95,24 +95,19 @@ export default function Hero() {
                     </>}
                 </div>
                 <div className={(!projects || !randomThree ? "animate-pulse" : "") + " w-32 h-16 absolute top-[35%] left-[50%] sm:left-[40%] project-box tone-3 p-3 rounded-lg perspective-middle flex items-center space-x-2"}>
-                {!profile ? <div className="flex-1">
-                    <div className="animate-pulse bg-white/10 w-16 h-6 rounded-lg" />
-                    <div className="animate-pulse mt-2 bg-white/10 w-12 h-4 rounded-md" />
-                </div> : <div className="flex-1">
-                    <h1 className="text-center leading-none font-light text-3xl md:text-xl lg:text-3xl text-white">{profile.username}</h1>
-                    <h1 className="text-center leading-none font-semibold text-xl md:text-lg lg:text-xl text-zinc-300">#{profile.discriminator}</h1>
-                </div>}
-            </div>
-            <div className="mt-5 md:mt-0 rounded-lg overflow-hidden col-span-2 w-full h-[140px] sm:gap-x-6 py-5 relative">
-                <div className="space-x-3 absolute inset-0 bg-[#080808] rounded-lg flex items-center justify-center">
-                    <div className="animate-pulse h-6 w-6 rounded-lg bg-white/10" />
-                    <div className="animate-pulse h-5 w-40 md:w-80 rounded-lg bg-white/10" />
-                </div>
-                {profile && <a onClick={toggle} className="cursor-pointer absolute top-2 left-2 z-[2] uppercase text-xs text-zinc-700">
-                </a>}
-                {profile && <div className="z-1 absolute inset-0">
-                    <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
-                </div>}
+                    {randomThree ? <>
+                        <img className="w-8 h-8 rounded-xl" src={randomThree.logo} />
+                        <div className="space-y-1">
+                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomThree.title}</h1>
+                            <a href={randomThree.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
+                        </div>
+                    </> : <>
+                        <div className="w-8 h-8 rounded-lg bg-white/10" />
+                        <div className="space-y-1">
+                            <div className="w-16 h-3 rounded-lg bg-white/10" />
+                            <div className="w-12 h-2 rounded-lg bg-white/10" />
+                        </div>
+                    </>}
                 </div>
             </div>
         </div>
