@@ -95,19 +95,7 @@ export default function Hero() {
                     </>}
                 </div>
                 <div className={(!projects || !randomThree ? "animate-pulse" : "") + " w-32 h-16 absolute top-[35%] left-[50%] sm:left-[40%] project-box tone-3 p-3 rounded-lg perspective-middle flex items-center space-x-2"}>
-                    {randomThree ? <>
-                        <img className="w-8 h-8 rounded-xl" src={randomThree.logo} />
-                        <div className="space-y-1">
-                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomThree.title}</h1>
-                            <a href={randomThree.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
-                        </div>
-                    </> : <>
-                        <div className="w-8 h-8 rounded-lg bg-white/10" />
-                        <div className="space-y-1">
-                            <div className="w-16 h-3 rounded-lg bg-white/10" />
-                            <div className="w-12 h-2 rounded-lg bg-white/10" />
-                        </div>
-                    </>}
+                <iframe src={"https://linkcord.js.org/api/v3/widget/245511350724329473?type=spotify_large&lang=en&theme=dark&align=left&background=080808"} className="w-full" height="140" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" />
                 </div>
             </div>
         </div>
