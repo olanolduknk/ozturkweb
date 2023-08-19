@@ -142,7 +142,7 @@ export default function Header() {
                 >
                     <img className="w-6 h-6 translate-y-3 -translate-x-2 -rotate-12" src={baseURL + emojis[Object.keys(emojis)[Math.floor(Math.random() * Object.keys(emojis).length)]]} />
                 </Transition>
-                <Tippy interactive={true} content="Kader">
+                <Tippy interactive={true} content="Öztürk">
                     <button onClick={() => {
                         if (isClicked) return;
                         setIsClicked(true);
