@@ -86,7 +86,7 @@ export default function Header() {
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <Link href="mailto:ilovefourleafclover@icloud.com">
+                                            <Link href="mailto:">
                                                 <a className={`flex items-center justify-between ${router.route == '/contact' ? 'text-gray-100 font-semibold' : ''}`}>
                                                     <UilEnvelope /> <h6 className="ml-2">Contact</h6>
                                                 </a>
@@ -120,7 +120,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="mailto:ilovefourleafclover@icloud.com">
+                            <Link href="mailto:">
                                 <a className={`flex items-center ${router.route == '/contact' ? 'text-gray-100 font-semibold' : 'hover:text-white transition-all'}`}>
                                     <UilEnvelope /> <h6 className="ml-1">Contact</h6>
                                 </a>
