@@ -1,7 +1,14 @@
+function cleanToken(t) {
+  if (!t) return "";
+  // Tırnak/boşluk/newline temizle
+  return String(t).trim().replace(/^["']|["']$/g, "");
+}
+
 export default async function handler(req, res) {
-  const USERNAME = process.env.GITHUB_USERNAME || "olanolduknk";
-  const TOKEN = process.env.GITHUB_TOKEN;
+  const USERNAME = (process.env.GITHUB_USERNAME || "olanolduknk").trim();
   const LIMIT = Math.max(1, Number(process.env.GITHUB_REPO_LIMIT || 6));
+
+  const TOKEN = cleanToken(process.env.GITHUB_TOKEN);
 
   if (!TOKEN) {
     return res.status(200).json({
@@ -19,34 +26,36 @@ export default async function handler(req, res) {
         headers: {
           accept: "application/vnd.github+json",
           "user-agent": "ozturkweb",
-          authorization: `Bearer ${TOKEN}`,
+          // GitHub REST için en stabil format:
+          authorization: `token ${TOKEN}`,
         },
       }
     );
 
+    const text = await r.text().catch(() => "");
+
     if (!r.ok) {
-      const detail = await r.text().catch(() => "");
+      // 401 ise "Bad credentials" görünsün diye detail'ı geçiriyoruz
       return res.status(200).json({
         ok: false,
         error: "github_http_error",
         http_status: r.status,
-        detail: detail.slice(0, 300),
+        detail: text.slice(0, 400),
         repos: [],
       });
     }
 
-    const data = await r.json();
+    const data = JSON.parse(text);
 
     if (!Array.isArray(data)) {
       return res.status(200).json({
         ok: false,
         error: "github_bad_payload",
+        detail: text.slice(0, 200),
         repos: [],
       });
     }
 
-    // Eski tasarımın beklediği alanlar zaten GitHub objesinde var.
-    // Sadece sayıyı ENV ile kontrol ediyoruz.
     return res.status(200).json({
       ok: true,
       repos: data.slice(0, LIMIT),
