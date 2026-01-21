@@ -1,54 +1,85 @@
-import { UilSpinnerAlt, UilStar, UilCodeBranch } from '@iconscout/react-unicons';
-import swr from '../../lib/swr.jsx';
+import swr from "../../lib/swr.jsx";
 
 export default function Repos() {
-    const { data: fetchedRepos } = swr('/api/util/repos', 600000);
-    const repos = fetchedRepos ? Array.isArray(fetchedRepos) ? fetchedRepos.slice(0, 6) : [] : [];
+  const { data } = swr("/api/util/repos");
 
-    if (fetchedRepos && repos.length < 6) {
-        for(let i = 0; i < (6 - repos.length); i++) {
-            repos.push(null);
-        };
-    };
-    
+  // loading
+  if (!data) {
     return (
-        <div className="w-full py-10">
-            <div className="relative w-full">
-                <div className="w-24 h-24 rounded-lg shadow-xl shadow-blue-800/20 bg-gradient-to-bl from-sky-600 to-blue-800" />
-                <h1 className="heading-text absolute bottom-5 left-5 text-3xl text-white font-bold text-center">GitHub Repositories</h1>
-            </div>
-            {fetchedRepos ? <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {repos.map((__, index) => (
-                    __ ? <a href={__.html_url} target="_blank" key={index} className="bg-[#080808] hover:bg-[#101010] transition-all duration-200 flex flex-col rounded-lg py-4 px-5 h-28">
-                        <h1 className="leading-none font-bold text-lg">{__.full_name}</h1>
-                        <span className="bg-white/10 text-sm w-min py-0.5 px-1 mt-2 block rounded-lg">{__.language || "Collaborator"}</span>
-                        <div className="w-full mt-auto flex-1 flex items-end justify-end space-x-3">
-                            <h6 className="flex items-center gap-x-1"><UilStar /> {__.stargazers_count} <span className="text-xs opacity-50">stars</span></h6>
-                            <h6 className="flex items-center gap-x-1"><UilCodeBranch /> {__.forks_count} <span className="text-xs opacity-50">forks</span></h6>
-                        </div>
-                    </a>
-                    : <div key={index} className="bg-[#080808] rounded-lg p-5 h-28">
-                        <div className="animate-pulse rounded-lg w-28 h-6 bg-white/10" />
-                        <div className="animate-pulse rounded-lg w-16 h-5 mt-2 mb-1 bg-white/10" />
-                        <div className="w-full mt-auto flex-1 flex items-end justify-end space-x-3">
-                            <div className="animate-pulse rounded-lg w-16 h-5 bg-white/10" />
-                            <div className="animate-pulse rounded-lg w-16 h-5 bg-white/10" />
-                        </div>
-                    </div>
-                ))}
-            </div>
-            : <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="bg-[#080808] rounded-lg p-5 h-28">
-                        <div className="animate-pulse rounded-lg w-28 h-6 bg-white/10" />
-                        <div className="animate-pulse rounded-lg w-16 h-5 mt-2 mb-1 bg-white/10" />
-                        <div className="w-full mt-auto flex-1 flex items-end justify-end space-x-3">
-                            <div className="animate-pulse rounded-lg w-16 h-5 bg-white/10" />
-                            <div className="animate-pulse rounded-lg w-16 h-5 bg-white/10" />
-                        </div>
-                    </div>
-                ))}
-            </div>}
+      <div className="pt-10">
+        <div className="flex items-center space-x-3">
+          <div className="w-14 h-14 rounded-lg bg-blue-600/40" />
+          <h1 className="text-white text-2xl font-semibold">GitHub Repositories</h1>
         </div>
+
+        <div className="mt-6 grid md:grid-cols-3 gap-5">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="rounded-lg bg-[#080808] p-5">
+              <div className="animate-pulse bg-white/10 h-5 w-40 rounded-lg" />
+              <div className="animate-pulse mt-3 bg-white/10 h-4 w-28 rounded-lg" />
+              <div className="animate-pulse mt-6 bg-white/10 h-4 w-20 rounded-lg" />
+            </div>
+          ))}
+        </div>
+      </div>
     );
-};
+  }
+
+  // error
+  if (!data.ok) {
+    return (
+      <div className="pt-10">
+        <div className="flex items-center space-x-3">
+          <div className="w-14 h-14 rounded-lg bg-blue-600/40" />
+          <h1 className="text-white text-2xl font-semibold">GitHub Repositories</h1>
+        </div>
+
+        <div className="mt-6 rounded-lg bg-[#080808] p-5 text-zinc-300 flex items-center justify-between">
+          <div>GitHub repolar şu an alınamadı.</div>
+          <div className="text-zinc-600 text-xs uppercase">
+            {data.error}
+            {data.http_status ? ` (${data.http_status})` : ""}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const repos = data.repos || [];
+
+  return (
+    <div className="pt-10">
+      <div className="flex items-center space-x-3">
+        <div className="w-14 h-14 rounded-lg bg-blue-600/40 flex items-center justify-center">
+          <span className="text-white font-bold">GH</span>
+        </div>
+        <h1 className="text-white text-2xl font-semibold">GitHub Repositories</h1>
+      </div>
+
+      <div className="mt-6 grid md:grid-cols-3 gap-5">
+        {repos.map((r) => (
+          <a
+            key={r.full_name}
+            href={r.html_url}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg bg-[#080808] p-5 hover:bg-white/5 transition"
+          >
+            <div className="text-white font-semibold">{r.full_name}</div>
+            <div className="text-zinc-400 text-sm mt-1 line-clamp-2">
+              {r.description || "No description."}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between text-zinc-500 text-xs">
+              <div>{r.language || "—"}</div>
+              <div className="flex items-center space-x-4">
+                <div>★ {r.stargazers_count ?? 0}</div>
+                <div>⑂ {r.forks_count ?? 0}</div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
