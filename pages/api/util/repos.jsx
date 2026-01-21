@@ -1,37 +1,32 @@
 export default async function handler(req, res) {
-  const username = process.env.GITHUB_USERNAME;
-  const token = process.env.GITHUB_TOKEN;
+  const USERNAME = (process.env.GITHUB_USERNAME || "olanolduknk").trim();
+  const LIMIT = Math.max(1, Number(process.env.GITHUB_REPO_LIMIT || 6));
+  const EXCLUDE_FORKS = String(process.env.GITHUB_EXCLUDE_FORKS || "false").toLowerCase() === "true";
 
   try {
-    const r = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`, {
-      headers: {
-        Authorization: `token ${token}`,
-        "User-Agent": "ozturkweb"
+    const r = await fetch(
+      `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`,
+      {
+        headers: {
+          accept: "application/vnd.github+json",
+          "user-agent": "ozturkweb",
+        },
       }
-    });
-
-    const data = await r.json();
+    );
 
     if (!r.ok) {
-      return res.status(500).json({
-        ok: false,
-        error: "github_http_error",
-        http_status: r.status,
-        detail: data,
-        repos: []
-      });
+      // Eski davranış: hata olsa bile siteyi düşürme, boş array dön
+      return res.status(200).json([]);
     }
 
-    res.status(200).json({
-      ok: true,
-      repos: data
-    });
+    const data = await r.json();
+    if (!Array.isArray(data)) return res.status(200).json([]);
 
-  } catch (err) {
-    res.status(500).json({
-      ok: false,
-      error: "fetch_failed",
-      repos: []
-    });
+    const filtered = EXCLUDE_FORKS ? data.filter((x) => !x.fork) : data;
+
+    // Eski component direkt repo objelerini kullanıyor, map falan yapmıyoruz
+    return res.status(200).json(filtered.slice(0, LIMIT));
+  } catch {
+    return res.status(200).json([]);
   }
 }
