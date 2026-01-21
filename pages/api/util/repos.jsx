@@ -1,27 +1,36 @@
 export default async function handler(req, res) {
   const USERNAME = process.env.GITHUB_USERNAME || "olanolduknk";
   const TOKEN = process.env.GITHUB_TOKEN;
+  const LIMIT = Math.max(1, Number(process.env.GITHUB_REPO_LIMIT || 6));
+
+  if (!TOKEN) {
+    return res.status(200).json({
+      ok: false,
+      error: "missing_env",
+      missing: "GITHUB_TOKEN",
+      repos: [],
+    });
+  }
 
   try {
-    const headers = {
-      accept: "application/vnd.github+json",
-      "user-agent": "ozturkweb",
-    };
-
-    if (TOKEN) headers.authorization = `Bearer ${TOKEN}`;
-
     const r = await fetch(
-      `https://api.github.com/users/${USERNAME}/repos?per_page=6&sort=updated`,
-      { headers }
+      `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`,
+      {
+        headers: {
+          accept: "application/vnd.github+json",
+          "user-agent": "ozturkweb",
+          authorization: `Bearer ${TOKEN}`,
+        },
+      }
     );
 
     if (!r.ok) {
-      const text = await r.text().catch(() => "");
+      const detail = await r.text().catch(() => "");
       return res.status(200).json({
         ok: false,
         error: "github_http_error",
         http_status: r.status,
-        detail: text.slice(0, 300),
+        detail: detail.slice(0, 300),
         repos: [],
       });
     }
@@ -36,20 +45,12 @@ export default async function handler(req, res) {
       });
     }
 
-    const repos = data
-      .filter((x) => !x.fork)
-      .slice(0, 6)
-      .map((x) => ({
-        name: x.name,
-        full_name: x.full_name,
-        html_url: x.html_url,
-        description: x.description,
-        stargazers_count: x.stargazers_count,
-        forks_count: x.forks_count,
-        language: x.language,
-      }));
-
-    return res.status(200).json({ ok: true, repos });
+    // Eski tasarımın beklediği alanlar zaten GitHub objesinde var.
+    // Sadece sayıyı ENV ile kontrol ediyoruz.
+    return res.status(200).json({
+      ok: true,
+      repos: data.slice(0, LIMIT),
+    });
   } catch (e) {
     return res.status(200).json({
       ok: false,

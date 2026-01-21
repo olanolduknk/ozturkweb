@@ -1,12 +1,16 @@
 export default async function handler(req, res) {
-  const DISCORD_ID = "1442201028048060529";
+  const DISCORD_ID = process.env.DISCORD_ID;
+
+  if (!DISCORD_ID) {
+    return res.status(200).json({ ok: false, error: "missing_env", missing: "DISCORD_ID" });
+  }
 
   try {
     const r = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, {
       headers: { accept: "application/json" },
     });
 
-    // Lanyard bazı kullanıcıları track etmiyorsa 404 dönebiliyor.
+    // Track edilmiyorsa / geçici problem varsa site çökmesin
     if (!r.ok) {
       return res.status(200).json({
         ok: false,
@@ -17,13 +21,8 @@ export default async function handler(req, res) {
     }
 
     const payload = await r.json();
-
     if (!payload?.success || !payload?.data) {
-      return res.status(200).json({
-        ok: false,
-        error: "bad_payload",
-        id: DISCORD_ID,
-      });
+      return res.status(200).json({ ok: false, error: "bad_payload", id: DISCORD_ID });
     }
 
     const d = payload.data;
@@ -41,13 +40,10 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       ok: true,
-
       id: DISCORD_ID,
       username: u.username || "Unknown",
-      discriminator: u.discriminator || "0000",
       status,
       avatar_url: avatarUrl,
-
       listening_to_spotify: !!d.listening_to_spotify,
       spotify: d.spotify || null,
     });
