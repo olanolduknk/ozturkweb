@@ -2,40 +2,30 @@ import { TextLoop } from "react-text-loop-next";
 import texts from "../../hello.languages";
 import swr from '../../lib/swr.jsx';
 import Tippy from '@tippyjs/react';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 export default function Hero() {
     const { data: _projects } = swr('https://ozturkbey.github.io/projects/list.json', 600000);
-    let projects = _projects ? _projects : null;
+    const projects = _projects || null;
+    const selectedProjects = useMemo(() => {
+        if (!Array.isArray(projects) || projects.length === 0) {
+            return [];
+        }
 
-    const [ isSelected, setIsSelected ] = useState(false);
-    const [ randomOne, setRandomOne ] = useState(null);
-    const [ randomTwo, setRandomTwo ] = useState(null);
-    const [ randomThree, setRandomThree ] = useState(null);
+        const copy = [...projects];
+        const picks = [];
 
-    useEffect(() => {
-        try {
-            if (isSelected || !Array.isArray(projects)) return;
-            setIsSelected(true);
-            
-            for(let i = 0; i < 3; i++) {
-                const selected = projects[Math.floor(Math.random() * projects.length)];
-                projects = projects.filter(project => project != selected);
-    
-                switch(i) {
-                    case 0:
-                        setRandomOne(selected);
-                        break;
-                    case 1:
-                        setRandomTwo(selected);
-                        break;
-                    case 2:
-                        setRandomThree(selected);
-                        break;
-                };
-            };
-        } catch {};
-    }, [ projects ]);
+        for (let i = 0; i < 3 && copy.length > 0; i += 1) {
+            const index = Math.floor(Math.random() * copy.length);
+            picks.push(copy.splice(index, 1)[0]);
+        }
+
+        return picks;
+    }, [projects]);
+
+    const randomOne = selectedProjects[0];
+    const randomTwo = selectedProjects[1];
+    const randomThree = selectedProjects[2];
     
     return (
         <div className="relative w-full sm:grid sm:grid-cols-2 sm:gap-x-12 pb-10 pt-5 sm:pt-0">
@@ -68,7 +58,7 @@ export default function Hero() {
                         <img className="w-8 h-8 rounded-xl" src={randomOne.logo} />
                         <div className="space-y-1">
                             <h1 className="text-zinc-100 text-lg leading-none font-light">{randomOne.title}</h1>
-                            <a href={randomOne.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
+                            <a href={randomOne.link} target="_blank" rel="noreferrer" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
                         </div>
                     </> : <>
                         <div className="w-8 h-8 rounded-lg bg-white/10" />
@@ -83,7 +73,7 @@ export default function Hero() {
                         <img className="w-8 h-8 rounded-xl" src={randomTwo.logo} />
                         <div className="space-y-1">
                             <h1 className="text-zinc-100 text-lg leading-none font-light">{randomTwo.title}</h1>
-                            <a href={randomTwo.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
+                            <a href={randomTwo.link} target="_blank" rel="noreferrer" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
                         </div>
                     </> : <>
                         <div className="w-8 h-8 rounded-lg bg-white/10" />
@@ -98,7 +88,7 @@ export default function Hero() {
                         <img className="w-8 h-8 rounded-xl" src={randomThree.logo} />
                         <div className="space-y-1">
                             <h1 className="text-zinc-100 text-lg leading-none font-light">{randomThree.title}</h1>
-                            <a href={randomThree.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
+                            <a href={randomThree.link} target="_blank" rel="noreferrer" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"><i className="fal fa-arrow-up-right-from-square mr-1" /> Visit</a>
                         </div>
                     </> : <>
                         <div className="w-8 h-8 rounded-lg bg-white/10" />
