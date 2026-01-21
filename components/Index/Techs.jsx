@@ -12,9 +12,15 @@ export default function Techs() {
             </div>
             <div className="gap-2 p-5 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {techs ? techs.map((tech, index) => (
-                    <div key={index} className="bg-[#080808] hover:-translate-y-[3px] hover:bg-[#101010] transition-all duration-200 rounded-lg p-2 px-3 flex items-center justify-between">
-                        <img src={"/img/techs/" + tech[1]} className="h-6 w-6" /> {tech[0]}
-                    </div>
+                    <a
+                        key={index}
+                        href={tech[2]}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="bg-[#080808] hover:-translate-y-[3px] hover:bg-[#101010] transition-all duration-200 rounded-lg p-2 px-3 flex items-center justify-between"
+                    >
+                        <img src={"/img/techs/" + tech[1]} className="h-6 w-6" alt={tech[0]} /> {tech[0]}
+                    </a>
                 )) : Array.from({ length: 12 }).map((_, index) => (
                     <div key={index} className="bg-[#080808] hover:-translate-y-[3px] hover:bg-[#101010] transition-all duration-200 rounded-lg p-2 px-3 flex items-center justify-between">
                         <div className="animate-pulse w-6 h-6 rounded-lg bg-white/10" />

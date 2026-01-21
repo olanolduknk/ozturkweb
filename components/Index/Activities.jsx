@@ -10,7 +10,7 @@ export default function Activities() {
       <div className="pt-5 pb-10 md:grid grid-cols-3 gap-x-6">
         <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
           <div className="relative flex items-center w-[100px] h-[100px]">
-            <img className="animate-pulse rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" alt="loading" />
+            <img className="animate-pulse rounded-full w-full h-full object-cover" src="https://i.ibb.co/68X2Xfq/pulse.png" alt="loading" />
           </div>
           <div className="flex-1">
             <div className="animate-pulse bg-white/10 w-16 h-6 rounded-lg" />
@@ -37,7 +37,7 @@ export default function Activities() {
       <div className="pt-5 pb-10 md:grid grid-cols-3 gap-x-6">
         <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
           <div className="relative flex items-center w-[100px] h-[100px]">
-            <img className="rounded-full w-auto" src="https://i.ibb.co/68X2Xfq/pulse.png" alt="discord" />
+            <img className="rounded-full w-full h-full object-cover" src="https://i.ibb.co/68X2Xfq/pulse.png" alt="discord" />
           </div>
           <div className="flex-1">
             <h1 className="text-center leading-none font-light text-3xl md:text-xl lg:text-3xl text-white">
@@ -75,7 +75,7 @@ export default function Activities() {
       {/* Discord card */}
       <div className="flex items-center space-x-5 rounded-lg bg-[#080808] p-5">
         <div className="relative flex items-center w-[100px] h-[100px]">
-          <img className="rounded-full w-auto" src={profile.avatar_url} alt="discord avatar" />
+          <img className="rounded-full w-full h-full object-cover" src={profile.avatar_url} alt="discord avatar" />
 
           <Tippy interactive={true} content={statusUpper}>
             <div className="absolute bottom-1 bg-[#080808] rounded-full right-1 w-6 h-6 flex items-center justify-center">
