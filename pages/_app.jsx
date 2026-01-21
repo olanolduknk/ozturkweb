@@ -4,15 +4,30 @@ import 'tailwindcss/tailwind.css';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import Head from 'next/head';
+import Script from 'next/script';
+import { useEffect } from 'react';
 
 import Header from '../components/Static/Header.jsx';
 import Footer from '../components/Static/Footer.jsx';
 
-Router.onRouteChangeStart = () => NProgress.start();
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
-
 export default function Swoth({ Component, pageProps }) {
+    useEffect(() => {
+        NProgress.configure({ showSpinner: false });
+
+        const handleStart = () => NProgress.start();
+        const handleStop = () => NProgress.done();
+
+        Router.events.on('routeChangeStart', handleStart);
+        Router.events.on('routeChangeComplete', handleStop);
+        Router.events.on('routeChangeError', handleStop);
+
+        return () => {
+            Router.events.off('routeChangeStart', handleStart);
+            Router.events.off('routeChangeComplete', handleStop);
+            Router.events.off('routeChangeError', handleStop);
+        };
+    }, []);
+
     return (
         <>
             <Head>
@@ -27,10 +42,8 @@ export default function Swoth({ Component, pageProps }) {
                 <Component {...pageProps} />
                 <Footer />
             </main>
-            <div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" />
-                <script src="/js/main.js" />
-            </div>
+            <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" strategy="afterInteractive" />
+            <Script src="/js/main.js" strategy="afterInteractive" />
         </>
     );
 };
