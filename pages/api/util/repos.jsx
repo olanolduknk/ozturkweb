@@ -1,29 +1,33 @@
 export default async function handler(req, res) {
-  const USERNAME = "olanolduknk"; // burada hangi hesabın repoları görünsün istiyorsan onu yaz
+  const USERNAME = process.env.GITHUB_USERNAME || "olanolduknk";
+  const TOKEN = process.env.GITHUB_TOKEN;
 
   try {
+    const headers = {
+      accept: "application/vnd.github+json",
+      "user-agent": "ozturkweb",
+    };
+
+    if (TOKEN) headers.authorization = `Bearer ${TOKEN}`;
+
     const r = await fetch(
       `https://api.github.com/users/${USERNAME}/repos?per_page=6&sort=updated`,
-      {
-        headers: {
-          accept: "application/vnd.github+json",
-          "user-agent": "ozturkweb",
-        },
-      }
+      { headers }
     );
 
     if (!r.ok) {
+      const text = await r.text().catch(() => "");
       return res.status(200).json({
         ok: false,
         error: "github_http_error",
         http_status: r.status,
+        detail: text.slice(0, 300),
         repos: [],
       });
     }
 
     const data = await r.json();
 
-    // GitHub bazen rate-limitte object döndürür; array değilse güvenli fallback.
     if (!Array.isArray(data)) {
       return res.status(200).json({
         ok: false,
