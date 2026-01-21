@@ -5,7 +5,7 @@ let CACHE = {
 };
 
 export default async function handler(req, res) {
-  const USERNAME = (process.env.GITHUB_USERNAME || "olanolduknk").trim();
+  const USERNAME = (process.env.GITHUB_USERNAME || "ozturkbey").trim();
   const LIMIT = Math.max(1, Number(process.env.GITHUB_REPO_LIMIT || 6));
   const EXCLUDE_FORKS = String(process.env.GITHUB_EXCLUDE_FORKS || "false").toLowerCase() === "true";
   const TOKEN = process.env.GITHUB_TOKEN || null;
