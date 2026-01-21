@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-  const DISCORD_ID = process.env.DISCORD_ID || "1442201028048060529";
+  const DISCORD_ID = process.env.DISCORD_ID || "245511350724329473";
 
   try {
     const r = await axios.get(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
@@ -15,7 +15,6 @@ export default async function handler(req, res) {
     const status = d.discord_status || "offline";
     const avatarHash = u.avatar || null;
 
-    // CDN avatar fallback (Discord default avatar)
     const discNum = Number(u.discriminator || 0);
     const defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${discNum % 5}.png`;
 
@@ -23,18 +22,18 @@ export default async function handler(req, res) {
       ? `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${avatarHash}.png?size=4096`
       : defaultAvatar;
 
-    return res.json({
+    res.json({
       id: DISCORD_ID,
       username: u.username || "Unknown",
       discriminator: u.discriminator || "0000",
-      status, // online / idle / dnd / offline
+      status,
       avatar: avatarHash,
       avatar_url: avatarUrl,
 
       listening_to_spotify: !!d.listening_to_spotify,
-      spotify: d.spotify || null, // { song, artist, album, album_art_url, track_id }
+      spotify: d.spotify || null,
     });
   } catch (e) {
-    return res.status(502).json({});
+    res.status(502).json({});
   }
 }
