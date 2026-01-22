@@ -29,14 +29,17 @@ export default function Header() {
                     <Link href="/">
                         <a className="pr-1 text-white font-bold text-4xl">Öztürk</a>
                     </Link>
-                    <a target="_blank" href="https://discord.com/users/245511350724329473" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
+                    <a target="_blank" href="https://www.instagram.com/xj16/" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
+                        <i className="fab fa-instagram" />
+                    </a>
+					<a target="_blank" href="https://www.instagram.com/ck58/" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
+                        <i className="fab fa-tiktok" />
+                    </a>
+					<a target="_blank" href="https://discord.com/users/1442201028048060529" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
                         <i className="fab fa-discord" />
                     </a>
-                    <a target="_blank" href="https://github.com/ozturkbey" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
+					<a target="_blank" href="https://github.com/olanolduknk" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
                         <i className="fab fa-github" />
-                    </a>
-                    <a target="_blank" href="https://www.instagram.com/adimozturk/" className="flex items-center justify-center cursor-pointer social w-10 h-10 rounded-lg">
-                        <i className="fab fa-instagram" />
                     </a>
                 </div>
                 <div className="flex items-center space-x-6">
