@@ -5,8 +5,14 @@ import Tippy from '@tippyjs/react';
 import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
-    // Projeler (mevcut)
-    const { data: _projects } = swr('https://cdn.jsdelivr.net/gh/olanolduknk/projects@main/list.json?ts=' + Date.now(), 0);
+    // Projeler (CDN sabit URL + SWR dedupe)
+    const PROJECTS_URL = 'https://cdn.jsdelivr.net/gh/olanolduknk/projects@bc0742b/list.json';
+    const { data: _projects } = swr(PROJECTS_URL, {
+        dedupingInterval: 10 * 60 * 1000,     // 10 dk: aynı URL için tekrar fetch etme
+        revalidateOnFocus: false,             // sekmeye geri dönünce yeniden vurmasın
+        revalidateIfStale: true,
+        shouldRetryOnError: false,
+    });
     let projects = _projects ? _projects : null;
 
     // Discord profile (Lanyard -> /api/util/me)
@@ -30,9 +36,12 @@ export default function Hero() {
             if (isSelected || !Array.isArray(projects)) return;
             setIsSelected(true);
 
+            // projeleri 3 tane seç
+            let pool = [...projects];
+
             for (let i = 0; i < 3; i++) {
-                const selected = projects[Math.floor(Math.random() * projects.length)];
-                projects = projects.filter(project => project != selected);
+                const selected = pool[Math.floor(Math.random() * pool.length)];
+                pool = pool.filter(project => project !== selected);
 
                 switch (i) {
                     case 0:
@@ -44,10 +53,10 @@ export default function Hero() {
                     case 2:
                         setRandomThree(selected);
                         break;
-                };
-            };
+                }
+            }
         } catch { }
-    }, [projects]);
+    }, [projects, isSelected]);
 
     return (
         <div className="relative w-full sm:grid sm:grid-cols-2 sm:gap-x-12 pb-10 pt-5 sm:pt-0">
@@ -55,7 +64,7 @@ export default function Hero() {
             <div className="absolute blur-3xl top-[40%] left-[40%] w-40 h-40 rounded-full bg-gradient-to-br from-emerald-600/30" />
             <div className="absolute blur-3xl top-[-20%] left-[90%] w-40 h-40 rounded-full bg-gradient-to-br from-red-600/30" />
 
-            {/* AVATAR: sol boş alan (senin kırmızıyla işaretlediğin yer) */}
+            {/* AVATAR: sol boş alan */}
             <div className="hidden sm:block absolute left-[4%] top-[18%] z-[5]">
                 {!profile ? (
                     <div className="w-40 h-40 rounded-full bg-white/10 animate-pulse" />
@@ -94,20 +103,26 @@ export default function Hero() {
                     </div>
                     <h1 className="leading-none text-white font-bold text-4xl">I'm Öztürk.</h1>
                     <p className="pt-3 w-4/5 lg:w-8/12 mx-auto sm:mr-0 sm:ml-auto text-gray-400">
-                        Building websites, bots,<br></br>npm packages and more. ^^
+                        Building websites, bots,<br />npm packages and more. ^^
                     </p>
                 </div>
             </div>
 
-            {/* SAĞ: waving + project kartları (dokunmadım) */}
+            {/* SAĞ: waving + project kartları */}
             <div className="waving relative min-h-[230px] mt-10 md:mt-0">
                 {/* Project box 1 */}
                 <div className={(!projects || !randomOne ? "animate-pulse" : "") + " w-32 h-16 absolute top-[10%] left-[20%] sm:left-[10%] project-box tone-1 p-3 rounded-lg perspective-left flex items-center space-x-2"}>
                     {randomOne ? <>
-                        <img className="w-8 h-8 rounded-xl" src={randomOne.logo} />
+                        <img className="w-8 h-8 rounded-xl" src={randomOne.logo} alt={randomOne.title} />
                         <div className="space-y-1">
-                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomOne.title}</h1>
-                            <a href={randomOne.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none" rel="noreferrer">
+                            {/* SADECE PROJE ADI HAFİF KALIN */}
+                            <h1 className="text-zinc-100 text-lg leading-none font-medium">{randomOne.title}</h1>
+                            <a
+                                href={randomOne.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"
+                            >
                                 <i className="fal fa-arrow-up-right-from-square mr-1" /> Visit
                             </a>
                         </div>
@@ -123,10 +138,16 @@ export default function Hero() {
                 {/* Project box 2 */}
                 <div className={(!projects || !randomTwo ? "animate-pulse" : "") + " w-32 h-16 absolute top-[60%] left-[10%] sm:left-[0%] project-box tone-2 p-3 rounded-lg perspective-right flex items-center space-x-2"}>
                     {randomTwo ? <>
-                        <img className="w-8 h-8 rounded-xl" src={randomTwo.logo} />
+                        <img className="w-8 h-8 rounded-xl" src={randomTwo.logo} alt={randomTwo.title} />
                         <div className="space-y-1">
-                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomTwo.title}</h1>
-                            <a href={randomTwo.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none" rel="noreferrer">
+                            {/* SADECE PROJE ADI HAFİF KALIN */}
+                            <h1 className="text-zinc-100 text-lg leading-none font-medium">{randomTwo.title}</h1>
+                            <a
+                                href={randomTwo.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"
+                            >
                                 <i className="fal fa-arrow-up-right-from-square mr-1" /> Visit
                             </a>
                         </div>
@@ -142,10 +163,16 @@ export default function Hero() {
                 {/* Project box 3 */}
                 <div className={(!projects || !randomThree ? "animate-pulse" : "") + " w-32 h-16 absolute top-[35%] left-[50%] sm:left-[40%] project-box tone-3 p-3 rounded-lg perspective-middle flex items-center space-x-2"}>
                     {randomThree ? <>
-                        <img className="w-8 h-8 rounded-xl" src={randomThree.logo} />
+                        <img className="w-8 h-8 rounded-xl" src={randomThree.logo} alt={randomThree.title} />
                         <div className="space-y-1">
-                            <h1 className="text-zinc-100 text-lg leading-none font-light">{randomThree.title}</h1>
-                            <a href={randomThree.link} target="_blank" className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none" rel="noreferrer">
+                            {/* SADECE PROJE ADI HAFİF KALIN */}
+                            <h1 className="text-zinc-100 text-lg leading-none font-medium">{randomThree.title}</h1>
+                            <a
+                                href={randomThree.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:underline font-light text-[0.75rem] text-zinc-200 leading-none"
+                            >
                                 <i className="fal fa-arrow-up-right-from-square mr-1" /> Visit
                             </a>
                         </div>
