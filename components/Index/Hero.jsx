@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
     // Projeler (CDN sabit URL + SWR dedupe)
-    const PROJECTS_URL = 'https://cdn.jsdelivr.net/gh/olanolduknk/projects@bc0742b/list.json';
+    const PROJECTS_URL = 'https://raw.githubusercontent.com/olanolduknk/projects/main/list.json';
     const { data: _projects } = swr(PROJECTS_URL, {
         dedupingInterval: 10 * 60 * 1000,     // 10 dk: aynı URL için tekrar fetch etme
         revalidateOnFocus: false,             // sekmeye geri dönünce yeniden vurmasın
