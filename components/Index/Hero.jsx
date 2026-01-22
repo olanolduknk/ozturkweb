@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
     // Projeler (mevcut)
-    const { data: _projects } = swr('https://ozturkbey.github.io/projects/list.json', 600000);
+    const { data: _projects } = swr('https://cdn.jsdelivr.net/gh/olanolduknk/projects@main/list.json', 600000);
     let projects = _projects ? _projects : null;
 
     // Discord profile (Lanyard -> /api/util/me)
